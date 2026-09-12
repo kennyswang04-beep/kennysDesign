@@ -20,61 +20,63 @@ const navItems = [
   { label: "联系方式", href: "#contact" }
 ];
 
+const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
+
 const cases = [
   {
     title: "E13 系列主图视觉",
     type: "电商主图 / 视觉策略",
-    image: "/portfolio/e13/main/01.jpg",
+    image: asset("/portfolio/e13/main/01.jpg"),
     meta: "6 张主图 + 11 张详情页",
     accent: "01",
     gallery: [
       ...Array.from({ length: 6 }, (_, index) => ({
         label: `主图 ${String(index + 1).padStart(2, "0")}`,
-        src: `/portfolio/e13/main/${String(index + 1).padStart(2, "0")}.jpg`
+        src: asset(`/portfolio/e13/main/${String(index + 1).padStart(2, "0")}.jpg`)
       })),
       ...Array.from({ length: 11 }, (_, index) => ({
         label: `详情页 ${String(index + 1).padStart(2, "0")}`,
-        src: `/portfolio/e13/detail/${String(index + 1).padStart(2, "0")}.jpg`
+        src: asset(`/portfolio/e13/detail/${String(index + 1).padStart(2, "0")}.jpg`)
       }))
     ]
   },
   {
     title: "亚马逊案例",
     type: "产品详情页 / 卖点表达",
-    image: "/portfolio/t83/main/01.jpg",
+    image: asset("/portfolio/t83/main/01.jpg"),
     meta: "8 张新主图 + 19 张详情页",
     accent: "02",
     gallery: [
       ...Array.from({ length: 8 }, (_, index) => ({
         label: `新主图 ${String(index + 1).padStart(2, "0")}`,
-        src: `/portfolio/t83/main/${String(index + 1).padStart(2, "0")}.jpg`
+        src: asset(`/portfolio/t83/main/${String(index + 1).padStart(2, "0")}.jpg`)
       })),
       ...Array.from({ length: 19 }, (_, index) => ({
         label: `详情页 ${String(index + 1).padStart(2, "0")}`,
-        src: `/portfolio/t83/detail/${String(index + 1).padStart(2, "0")}.jpg`
+        src: asset(`/portfolio/t83/detail/${String(index + 1).padStart(2, "0")}.jpg`)
       }))
     ]
   },
   {
     title: "2025过往总结",
     type: "产品目录 / 年度视觉归档",
-    image: "/portfolio/catalog/01.jpg",
+    image: asset("/portfolio/catalog/01.jpg"),
     meta: "6 张产品目录视觉",
     accent: "03",
     gallery: Array.from({ length: 6 }, (_, index) => ({
       label: `产品目录 ${String(index + 1).padStart(2, "0")}`,
-      src: `/portfolio/catalog/${String(index + 1).padStart(2, "0")}.jpg`
+      src: asset(`/portfolio/catalog/${String(index + 1).padStart(2, "0")}.jpg`)
     }))
   },
   {
     title: "总体产品目录设计",
     type: "版式系统 / 产品集合",
-    image: "/portfolio/a1/01.jpg",
+    image: asset("/portfolio/a1/01.jpg"),
     meta: "9 张产品目录设计",
     accent: "04",
     gallery: Array.from({ length: 9 }, (_, index) => ({
       label: `目录设计 ${String(index + 1).padStart(2, "0")}`,
-      src: `/portfolio/a1/${String(index + 1).padStart(2, "0")}.jpg`
+      src: asset(`/portfolio/a1/${String(index + 1).padStart(2, "0")}.jpg`)
     }))
   }
 ];
@@ -178,7 +180,7 @@ function App() {
 
           <aside className="hero-panel">
             <div className="portrait-frame">
-              <img src="/portfolio/kenny-portrait-apple.png" alt="Kenny 个人肖像" />
+              <img src={asset("/portfolio/kenny-portrait-apple.png")} alt="Kenny 个人肖像" />
             </div>
             <div className="role-copy">
               <span>ROLE</span>
@@ -273,7 +275,7 @@ function App() {
       <section className="experience motion-section" id="experience">
         <video
           className="motion-video"
-          src="/portfolio/product-motion.mp4"
+          src={asset("/portfolio/product-motion.mp4")}
           autoPlay
           muted
           loop

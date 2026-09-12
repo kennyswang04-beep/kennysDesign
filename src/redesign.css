@@ -1085,3 +1085,10 @@ h2 {
     min-height: 420px;
   }
 }
+
+/* Performance: keep motion area stable before lazy video mounts */
+.motion-video-shell {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}

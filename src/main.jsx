@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
   ArrowUpRight,
@@ -30,57 +30,57 @@ const cases = [
   {
     title: "E13 系列主图视觉",
     type: "电商主图 / 视觉策略",
-    image: asset("/portfolio/e13/main/01.jpg"),
+    image: asset("/portfolio/optimized/e13/main/01.jpg"),
     meta: "6 张主图 + 11 张详情页",
     accent: "01",
     gallery: [
       ...Array.from({ length: 6 }, (_, index) => ({
         label: `主图 ${String(index + 1).padStart(2, "0")}`,
-        src: asset(`/portfolio/e13/main/${String(index + 1).padStart(2, "0")}.jpg`)
+        src: asset(`/portfolio/optimized/e13/main/${String(index + 1).padStart(2, "0")}.jpg`)
       })),
       ...Array.from({ length: 11 }, (_, index) => ({
         label: `详情页 ${String(index + 1).padStart(2, "0")}`,
-        src: asset(`/portfolio/e13/detail/${String(index + 1).padStart(2, "0")}.jpg`)
+        src: asset(`/portfolio/optimized/e13/detail/${String(index + 1).padStart(2, "0")}.jpg`)
       }))
     ]
   },
   {
     title: "亚马逊案例",
     type: "产品详情页 / 卖点表达",
-    image: asset("/portfolio/t83/main/01.jpg"),
+    image: asset("/portfolio/optimized/t83/main/01.jpg"),
     meta: "8 张新主图 + 19 张详情页",
     accent: "02",
     gallery: [
       ...Array.from({ length: 8 }, (_, index) => ({
         label: `新主图 ${String(index + 1).padStart(2, "0")}`,
-        src: asset(`/portfolio/t83/main/${String(index + 1).padStart(2, "0")}.jpg`)
+        src: asset(`/portfolio/optimized/t83/main/${String(index + 1).padStart(2, "0")}.jpg`)
       })),
       ...Array.from({ length: 19 }, (_, index) => ({
         label: `详情页 ${String(index + 1).padStart(2, "0")}`,
-        src: asset(`/portfolio/t83/detail/${String(index + 1).padStart(2, "0")}.jpg`)
+        src: asset(`/portfolio/optimized/t83/detail/${String(index + 1).padStart(2, "0")}.jpg`)
       }))
     ]
   },
   {
     title: "2025过往总结",
     type: "产品目录 / 年度视觉归档",
-    image: asset("/portfolio/catalog/01.jpg"),
+    image: asset("/portfolio/optimized/catalog/01.jpg"),
     meta: "6 张产品目录视觉",
     accent: "03",
     gallery: Array.from({ length: 6 }, (_, index) => ({
       label: `产品目录 ${String(index + 1).padStart(2, "0")}`,
-      src: asset(`/portfolio/catalog/${String(index + 1).padStart(2, "0")}.jpg`)
+      src: asset(`/portfolio/optimized/catalog/${String(index + 1).padStart(2, "0")}.jpg`)
     }))
   },
   {
     title: "总体产品目录设计",
     type: "版式系统 / 产品集合",
-    image: asset("/portfolio/a1/01.jpg"),
+    image: asset("/portfolio/optimized/a1/01.jpg"),
     meta: "9 张产品目录设计",
     accent: "04",
     gallery: Array.from({ length: 9 }, (_, index) => ({
       label: `目录设计 ${String(index + 1).padStart(2, "0")}`,
-      src: asset(`/portfolio/a1/${String(index + 1).padStart(2, "0")}.jpg`)
+      src: asset(`/portfolio/optimized/a1/${String(index + 1).padStart(2, "0")}.jpg`)
     }))
   }
 ];
@@ -114,10 +114,53 @@ const practiceGroups = [
   ...group,
   images: group.images.map((number) => ({
     label: String(number).padStart(2, "0"),
-    src: asset(`/portfolio/practice/${number}.jpg`)
+    src: asset(`/portfolio/optimized/practice/${number}.jpg`)
   }))
 }));
 
+function LazyMotionVideo() {
+  const containerRef = useRef(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const element = containerRef.current;
+    if (!element) return undefined;
+
+    if (!("IntersectionObserver" in window)) {
+      setShouldLoad(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "420px 0px" }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={containerRef} className="motion-video-shell" aria-hidden="true">
+      {shouldLoad && (
+        <video
+          className="motion-video"
+          src={asset("/portfolio/product-motion.mp4")}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+        />
+      )}
+    </div>
+  );
+}
 function PracticeCarousel({ group }) {
   const [activeImage, setActiveImage] = useState(0);
   const image = group.images[activeImage];
@@ -261,7 +304,7 @@ function App() {
 
           <aside className="hero-panel">
             <div className="portrait-frame">
-              <img src={asset("/portfolio/kenny-portrait-editorial.png")} alt="Kenny 个人肖像" />
+              <img src={asset("/portfolio/optimized/kenny-portrait-editorial.jpg")} alt="Kenny 个人肖像" />
             </div>
             <div className="role-copy">
               <span>ROLE</span>
@@ -366,15 +409,7 @@ function App() {
       </section>
 
       <section className="experience motion-section" id="experience">
-        <video
-          className="motion-video"
-          src={asset("/portfolio/product-motion.mp4")}
-          autoPlay
-          muted
-          loop
-          playsInline
-          aria-hidden="true"
-        />
+        <LazyMotionVideo />
         <div className="motion-shade" aria-hidden="true" />
         <div className="shell interaction-wrap">
           <div className="motion-copy">
@@ -436,6 +471,9 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+
+
+
 
 
 

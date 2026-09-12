@@ -1092,3 +1092,40 @@ h2 {
   inset: 0;
   overflow: hidden;
 }
+
+/* Mobile works preview: keep the same internal scroll behavior as desktop */
+@media (max-width: 760px) {
+  .work-preview.is-scrollable {
+    min-height: 520px;
+  }
+
+  .gallery-scroll {
+    max-height: 62vh;
+    min-height: 520px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    padding: 10px;
+  }
+
+  .gallery-item {
+    margin-bottom: 14px;
+  }
+
+  .gallery-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 420px) {
+  .work-preview.is-scrollable,
+  .gallery-scroll {
+    min-height: 500px;
+  }
+
+  .gallery-scroll {
+    max-height: 60vh;
+  }
+}

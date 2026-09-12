@@ -206,10 +206,6 @@ function PracticeCarousel({ group }) {
 }
 
 
-const getVisibleGallery = (gallery) => {
-  if (typeof window === "undefined") return gallery;
-  return window.matchMedia("(max-width: 760px)").matches ? gallery.slice(0, 5) : gallery;
-};
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeCase, setActiveCase] = useState(0);
@@ -378,7 +374,7 @@ function App() {
                     <span>{activeWork.accent}</span>
                     <p>{activeWork.meta}</p>
                   </div>
-                  {getVisibleGallery(activeWork.gallery).map((item, index) => (
+                  {activeWork.gallery.map((item, index) => (
                     <figure className="gallery-item" key={item.src}>
                       <img src={item.src} alt={`${activeWork.title} - ${item.label}`} loading={index < 2 ? "eager" : "lazy"} fetchPriority={index === 0 ? "high" : "auto"} decoding="async" />
                       <figcaption>{item.label}</figcaption>
@@ -476,6 +472,7 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+
 
 
 

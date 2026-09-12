@@ -123,11 +123,16 @@ function LazyMotionVideo() {
   const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
+    const fallbackTimer = window.setTimeout(() => setShouldLoad(true), 800);
     const element = containerRef.current;
-    if (!element) return undefined;
+    if (!element) {
+      window.clearTimeout(fallbackTimer);
+      return undefined;
+    }
 
     if (!("IntersectionObserver" in window)) {
       setShouldLoad(true);
+      window.clearTimeout(fallbackTimer);
       return undefined;
     }
 
@@ -135,6 +140,7 @@ function LazyMotionVideo() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setShouldLoad(true);
+          window.clearTimeout(fallbackTimer);
           observer.disconnect();
         }
       },
@@ -142,7 +148,10 @@ function LazyMotionVideo() {
     );
 
     observer.observe(element);
-    return () => observer.disconnect();
+    return () => {
+      window.clearTimeout(fallbackTimer);
+      observer.disconnect();
+    };
   }, []);
 
   return (
@@ -155,7 +164,8 @@ function LazyMotionVideo() {
           muted
           loop
           playsInline
-          preload="none"
+          preload="metadata"
+          poster={asset("/portfolio/optimized/t83-hero.jpg")}
         />
       )}
     </div>
@@ -472,6 +482,7 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+
 
 
 

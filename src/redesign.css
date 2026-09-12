@@ -1207,3 +1207,24 @@ h2 {
     font-size: clamp(0.88rem, 3.7vw, 1rem);
   }
 }
+
+/* Mobile motion video fallback */
+.motion-video-shell {
+  background-image: linear-gradient(90deg, rgba(255,255,255,0.44), rgba(255,255,255,0.12)), url("/kennysDesign/portfolio/optimized/t83-hero.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.motion-video-shell .motion-video {
+  z-index: 0;
+}
+
+@media (max-width: 760px) {
+  .motion-video-shell {
+    background-position: center top;
+  }
+
+  .motion-video {
+    opacity: 0.5;
+  }
+}

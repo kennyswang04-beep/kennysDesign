@@ -179,7 +179,7 @@ function PracticeCarousel({ group }) {
         </div>
       </div>
       <figure className="practice-frame">
-        <img src={image.src} alt={`${group.title} - ${image.label}`} loading="lazy" />
+        <img src={image.src} alt={`${group.title} - ${image.label}`} loading="eager" decoding="async" />
         <figcaption>作品 {image.label}</figcaption>
       </figure>
       <div className="practice-controls" aria-label={`${group.title}轮播控制`}>
@@ -205,6 +205,11 @@ function PracticeCarousel({ group }) {
   );
 }
 
+
+const getVisibleGallery = (gallery) => {
+  if (typeof window === "undefined") return gallery;
+  return window.matchMedia("(max-width: 760px)").matches ? gallery.slice(0, 5) : gallery;
+};
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeCase, setActiveCase] = useState(0);
@@ -304,7 +309,7 @@ function App() {
 
           <aside className="hero-panel">
             <div className="portrait-frame">
-              <img src={asset("/portfolio/optimized/kenny-portrait-editorial.jpg")} alt="Kenny 个人肖像" />
+              <img src={asset("/portfolio/optimized/kenny-portrait-editorial.jpg")} alt="Kenny 个人肖像" loading="eager" fetchPriority="high" decoding="async" />
             </div>
             <div className="role-copy">
               <span>ROLE</span>
@@ -373,9 +378,9 @@ function App() {
                     <span>{activeWork.accent}</span>
                     <p>{activeWork.meta}</p>
                   </div>
-                  {activeWork.gallery.map((item) => (
+                  {getVisibleGallery(activeWork.gallery).map((item, index) => (
                     <figure className="gallery-item" key={item.src}>
-                      <img src={item.src} alt={`${activeWork.title} - ${item.label}`} loading="lazy" />
+                      <img src={item.src} alt={`${activeWork.title} - ${item.label}`} loading={index < 2 ? "eager" : "lazy"} fetchPriority={index === 0 ? "high" : "auto"} decoding="async" />
                       <figcaption>{item.label}</figcaption>
                     </figure>
                   ))}
@@ -471,6 +476,8 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+
+
 
 
 

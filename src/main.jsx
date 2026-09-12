@@ -88,9 +88,9 @@ const cases = [
 const practiceGroups = [
   {
     accent: "01",
-    title: "视觉练习 02-04",
-    meta: "3 张画面 / 左右轮播",
-    images: [2, 3, 4]
+    title: "视觉练习 01-04",
+    meta: "4 张画面 / 左右轮播",
+    images: [1, 2, 3, 4]
   },
   {
     accent: "02",
@@ -472,6 +472,7 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+
 
 
 

@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
   ArrowUpRight,
+  ChevronLeft,
   ChevronRight,
   Mail,
   Menu,
@@ -12,6 +13,7 @@ import {
 } from "lucide-react";
 import GlowCursor from "./GlowCursor";
 import "./styles.css";
+import "./practice.css";
 
 const navItems = [
   { label: "角色介绍", href: "#profile" },
@@ -80,6 +82,83 @@ const cases = [
     }))
   }
 ];
+
+const practiceGroups = [
+  {
+    accent: "01",
+    title: "视觉练习 02-04",
+    meta: "3 张画面 / 左右轮播",
+    images: [2, 3, 4]
+  },
+  {
+    accent: "02",
+    title: "视觉练习 05-08",
+    meta: "4 张画面 / 连续浏览",
+    images: [5, 6, 7, 8]
+  },
+  {
+    accent: "03",
+    title: "视觉练习 09-10",
+    meta: "2 张画面 / 对照展示",
+    images: [9, 10]
+  },
+  {
+    accent: "04",
+    title: "视觉练习 11-12",
+    meta: "2 张画面 / 细节延展",
+    images: [11, 12]
+  }
+].map((group) => ({
+  ...group,
+  images: group.images.map((number) => ({
+    label: String(number).padStart(2, "0"),
+    src: asset(`/portfolio/practice/${String(number).padStart(2, "0")}.jpg`)
+  }))
+}));
+
+function PracticeCarousel({ group }) {
+  const [activeImage, setActiveImage] = useState(0);
+  const image = group.images[activeImage];
+
+  const move = (step) => {
+    setActiveImage((current) => (current + step + group.images.length) % group.images.length);
+  };
+
+  return (
+    <article className="practice-card">
+      <div className="practice-card-head">
+        <span>{group.accent}</span>
+        <div>
+          <h3>{group.title}</h3>
+          <p>{group.meta}</p>
+        </div>
+      </div>
+      <figure className="practice-frame">
+        <img src={image.src} alt={`${group.title} - ${image.label}`} loading="lazy" />
+        <figcaption>作品 {image.label}</figcaption>
+      </figure>
+      <div className="practice-controls" aria-label={`${group.title}轮播控制`}>
+        <button type="button" onClick={() => move(-1)} aria-label="上一张">
+          <ChevronLeft size={18} />
+        </button>
+        <div className="practice-dots">
+          {group.images.map((item, index) => (
+            <button
+              key={item.src}
+              className={activeImage === index ? "is-active" : ""}
+              type="button"
+              onClick={() => setActiveImage(index)}
+              aria-label={`查看作品 ${item.label}`}
+            />
+          ))}
+        </div>
+        <button type="button" onClick={() => move(1)} aria-label="下一张">
+          <ChevronRight size={18} />
+        </button>
+      </div>
+    </article>
+  );
+}
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -290,6 +369,25 @@ function App() {
             <p>
               以动态光影呈现产品结构、材质细节与核心卖点，让静态页面之外的视觉表达更具记忆点，也更适合简历作品集中的快速浏览。
             </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="practice section-pad" id="practice">
+        <div className="shell">
+          <div className="practice-heading">
+            <div>
+              <p className="section-kicker">PRACTICE WORKS</p>
+              <h2>练习作品</h2>
+            </div>
+            <p>
+              补充展示日常视觉练习与阶段性画面探索，以左右切换的方式快速浏览不同主题、构图和质感尝试。
+            </p>
+          </div>
+          <div className="practice-grid">
+            {practiceGroups.map((group) => (
+              <PracticeCarousel group={group} key={group.accent} />
+            ))}
           </div>
         </div>
       </section>

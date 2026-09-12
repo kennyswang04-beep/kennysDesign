@@ -1129,3 +1129,81 @@ h2 {
     max-height: 60vh;
   }
 }
+
+/* Fix mobile contact text wrapping */
+@media (max-width: 760px) {
+  .contact-grid {
+    align-items: start;
+  }
+
+  .contact h2 {
+    max-width: 10.5ch;
+    font-size: clamp(3rem, 13vw, 4.5rem);
+    line-height: 0.98;
+    word-break: keep-all;
+  }
+
+  .contact-cards a {
+    display: grid;
+    grid-template-columns: 26px minmax(0, 1fr);
+    grid-template-areas:
+      "icon label"
+      "icon value";
+    gap: 8px 14px;
+    min-height: 112px;
+    padding: 22px 20px;
+    align-items: center;
+  }
+
+  .contact-cards svg {
+    grid-area: icon;
+    align-self: start;
+    margin-top: 3px;
+  }
+
+  .contact-cards span {
+    grid-area: label;
+    font-size: 0.88rem;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .contact-cards strong {
+    grid-area: value;
+    display: block;
+    width: 100%;
+    font-size: clamp(1.08rem, 4.6vw, 1.28rem);
+    line-height: 1.25;
+    text-align: left;
+    overflow-wrap: normal;
+    word-break: normal;
+    white-space: normal;
+  }
+
+  .contact-cards a[href^="tel"] strong,
+  .contact-cards a[href^="weixin"] strong {
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+  }
+
+  .contact-cards a[href^="mailto"] strong {
+    font-size: clamp(0.96rem, 3.9vw, 1.12rem);
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 420px) {
+  .contact-cards a {
+    grid-template-columns: 24px minmax(0, 1fr);
+    min-height: 104px;
+    padding: 20px 18px;
+  }
+
+  .contact-cards strong {
+    font-size: clamp(1rem, 4.4vw, 1.16rem);
+  }
+
+  .contact-cards a[href^="mailto"] strong {
+    font-size: clamp(0.88rem, 3.7vw, 1rem);
+  }
+}

@@ -5,6 +5,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Mail,
+  MessageCircle,
   Menu,
   Pause,
   Phone,
@@ -14,6 +15,7 @@ import {
 import GlowCursor from "./GlowCursor";
 import "./styles.css";
 import "./practice.css";
+import "./redesign.css";
 
 const navItems = [
   { label: "角色介绍", href: "#profile" },
@@ -259,7 +261,7 @@ function App() {
 
           <aside className="hero-panel">
             <div className="portrait-frame">
-              <img src={asset("/portfolio/kenny-portrait-apple.png")} alt="Kenny 个人肖像" />
+              <img src={asset("/portfolio/kenny-portrait-editorial.png")} alt="Kenny 个人肖像" />
             </div>
             <div className="role-copy">
               <span>ROLE</span>
@@ -278,10 +280,22 @@ function App() {
           </div>
           <div className="profile-copy">
             <p>
-              熟练使用 Photoshop、Ai 进行视觉设计、海报合成、页面布局以及版式制作；使用 AE 和剪映完成动态视觉与后期合成；掌握 C4D 模型场景搭建，并运用 Oc 渲染器进行产品渲染与光影质感输出。结合当下 Ai 工具辅助提升创意实现与出图效率，能够独立完成从构思到落地的整体创作。
+              擅长从销售目标和用户出发做设计，而不只是追求画面美观。例如在详情页设计中，我会结合产品卖点、用户痛点、竞品表现和平台规则，梳理信息层级，重点提升用户对产品核心价值的理解和购买决策效率。
             </p>
             <p>
-              擅长品牌店铺视觉风格把控，统筹店铺整体视觉调性，统一首页、详情页、活动大促页面的视觉规范；能结合品牌定位与电商用户场景，输出适配平台的视觉方案，保障店铺视觉体系的一致性与营销转化效果。
+              在日常工作中，我主要使用 ChatGPT、Codex 等 AI 工具辅助工作，例如梳理产品卖点、发散创意方向、整理详情页文案结构，以及处理部分重复性的素材和流程工作。
+            </p>
+            <p>
+              结合 C4D 和 Octane Render 完成材质制作、灯光氛围和高质量渲染，再配合 Photoshop 进行版式设计、字体排版、营销信息补充及最终视觉合成。这套工作流程能够让我更灵活地控制产品的角度、质感、光影和场景氛围，尤其适合产品主图、详情页头屏、活动 KV、品牌视觉和新品上市素材的制作。
+            </p>
+            <p>
+              除了完成视觉表现，我也会从电商转化角度思考画面：例如突出产品核心卖点、材质和功能细节，结合不同平台的用户浏览习惯，建立清晰的信息层级，让画面既有品牌感，也能快速传达商品价值。
+            </p>
+            <p>
+              目前我也在持续研究和学习 AI 在电商设计中的应用，包括使用 ChatGPT 辅助梳理产品卖点、详情页文案逻辑和创意方向；使用 AI 图像工具进行风格探索、场景灵感和前期视觉提案；同时也在学习 Codex 等工具，希望将 AI 应用于素材整理、重复性工作处理以及与开发、运营协作的流程中。
+            </p>
+            <p>
+              我认为 AI 是提升设计效率和拓展创意边界的重要工具，但最终的视觉判断、品牌调性把控和商业转化思路，仍然需要设计师结合业务目标来完成。希望能够将我的三维表现能力、电商设计经验和 AI 学习能力，应用到贵公司的项目中，为品牌视觉和商品转化提供更有价值的支持。
             </p>
             <div className="metrics">
               <div>
@@ -409,6 +423,11 @@ function App() {
               <span>邮箱</span>
               <strong>2390879761@qq.com</strong>
             </a>
+            <a href="weixin://">
+              <MessageCircle size={18} />
+              <span>微信</span>
+              <strong>18002828034</strong>
+            </a>
           </div>
         </div>
       </footer>
@@ -417,3 +436,9 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+
+
+
+
+
+

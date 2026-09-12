@@ -112,7 +112,7 @@ const practiceGroups = [
   ...group,
   images: group.images.map((number) => ({
     label: String(number).padStart(2, "0"),
-    src: asset(`/portfolio/practice/${String(number).padStart(2, "0")}.jpg`)
+    src: asset(`/portfolio/practice/${number}.jpg`)
   }))
 }));
 

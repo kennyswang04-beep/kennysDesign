@@ -33,6 +33,7 @@ const cases = [
     image: asset("/portfolio/optimized/e13/main/01.jpg"),
     meta: "6 张主图 + 11 张详情页",
     accent: "01",
+    tags: ["我的职责：主图视觉与详情页画面设计", "设计目标：强化产品结构和核心卖点", "解决问题：提升卖点理解与购买决策效率"],
     gallery: [
       ...Array.from({ length: 6 }, (_, index) => ({
         label: `主图 ${String(index + 1).padStart(2, "0")}`,
@@ -50,6 +51,7 @@ const cases = [
     image: asset("/portfolio/optimized/t83/main/01.jpg"),
     meta: "8 张新主图 + 19 张详情页",
     accent: "02",
+    tags: ["我的职责：亚马逊主图与详情页视觉", "设计目标：清晰表达使用场景与功能价值", "解决问题：优化 A+ 页面信息层级"],
     gallery: [
       ...Array.from({ length: 8 }, (_, index) => ({
         label: `新主图 ${String(index + 1).padStart(2, "0")}`,
@@ -67,6 +69,7 @@ const cases = [
     image: asset("/portfolio/optimized/catalog/01.jpg"),
     meta: "6 张产品目录视觉",
     accent: "03",
+    tags: ["我的职责：年度产品目录视觉归档", "设计目标：统一多产品版式系统", "解决问题：让产品集合更易浏览和比较"],
     gallery: Array.from({ length: 6 }, (_, index) => ({
       label: `产品目录 ${String(index + 1).padStart(2, "0")}`,
       src: asset(`/portfolio/optimized/catalog/${String(index + 1).padStart(2, "0")}.jpg`)
@@ -78,13 +81,13 @@ const cases = [
     image: asset("/portfolio/optimized/a1/01.jpg"),
     meta: "9 张产品目录设计",
     accent: "04",
+    tags: ["我的职责：产品集合页版式设计", "设计目标：建立清晰目录与视觉秩序", "解决问题：提升系列产品的整体呈现效率"],
     gallery: Array.from({ length: 9 }, (_, index) => ({
       label: `目录设计 ${String(index + 1).padStart(2, "0")}`,
       src: asset(`/portfolio/optimized/a1/${String(index + 1).padStart(2, "0")}.jpg`)
     }))
   }
 ];
-
 const practiceGroups = [
   {
     accent: "01",
@@ -433,7 +436,7 @@ function App() {
                 <img src={activeWork.image} alt={activeWork.title} />
               )}
               <div className="work-tags" aria-label="项目说明">
-                {activeWork.tags.map((tag) => (
+                {(activeWork.tags ?? []).map((tag) => (
                   <span key={tag}>{tag}</span>
                 ))}
               </div>
@@ -559,6 +562,9 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+
+
+
 
 
 

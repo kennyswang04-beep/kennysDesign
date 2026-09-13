@@ -451,10 +451,44 @@ function App() {
               补充展示日常视觉练习与阶段性画面探索，以左右切换的方式快速浏览不同主题、构图和质感尝试。
             </p>
           </div>
-          <div className="practice-grid">
-            {practiceGroups.map((group) => (
-              <PracticeCarousel group={group} key={group.accent} />
-            ))}
+          <div className="aplus-showcase">
+            <div className="aplus-toolbar">
+              <div>
+                <span>Amazon A+ Practice Case</span>
+                <strong>iPad 配件 A+ 页面练习</strong>
+              </div>
+              <p>12 个模块按页面浏览顺序排列，模拟亚马逊 A+ 页面从首屏卖点到场景、结构和细节说明的阅读节奏。</p>
+            </div>
+            <div className="aplus-layout">
+              <aside className="aplus-index" aria-label="A+ 页面模块目录">
+                {practiceGroups.map((group) => (
+                  <a href={`#practice-group-${group.accent}`} key={group.accent}>
+                    <span>{group.accent}</span>
+                    <strong>{group.title}</strong>
+                    <em>{group.meta}</em>
+                  </a>
+                ))}
+              </aside>
+              <div className="aplus-page" aria-label="亚马逊 A+ 页面练习案例排序预览">
+                {practiceGroups.map((group) => (
+                  <section className="aplus-group" id={`practice-group-${group.accent}`} key={group.accent}>
+                    <div className="aplus-group-head">
+                      <span>{group.accent}</span>
+                      <div>
+                        <strong>{group.title}</strong>
+                        <p>{group.meta}</p>
+                      </div>
+                    </div>
+                    {group.images.map((item) => (
+                      <figure className="aplus-module" key={item.src}>
+                        <img src={item.src} alt={`${group.title} - 作品 ${item.label}`} loading="lazy" decoding="async" />
+                        <figcaption>模块 {item.label}</figcaption>
+                      </figure>
+                    ))}
+                  </section>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -489,6 +523,8 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+
+
 
 
 

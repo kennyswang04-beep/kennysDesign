@@ -2199,3 +2199,76 @@ h2,
     padding: 24px 22px 28px;
   }
 }
+
+/* Polished portrait card, remove rough seams */
+.hero-panel {
+  align-self: center;
+  gap: 0;
+  overflow: hidden;
+  padding: 10px;
+  border: 1px solid rgba(11, 11, 15, 0.12);
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.1);
+}
+
+.portrait-frame {
+  display: block;
+  aspect-ratio: 1 / 1.12;
+  margin: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 16px 16px 0 0;
+  background: #f4f4f1;
+  line-height: 0;
+}
+
+.portrait-frame img {
+  display: block;
+  width: 100%;
+  height: calc(100% + 2px);
+  object-fit: cover;
+  object-position: 50% 38%;
+  filter: none;
+  transform: translateY(-1px);
+}
+
+.role-copy {
+  margin: 0;
+  padding: 24px 26px 28px;
+  border-top: 1px solid rgba(11, 11, 15, 0.08);
+  border-radius: 0 0 16px 16px;
+  color: rgba(11, 11, 15, 0.66);
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.role-copy span {
+  color: rgba(11, 11, 15, 0.46);
+}
+
+.role-copy strong {
+  color: #0b0b0f;
+  font-size: clamp(2rem, 2.2vw, 2.8rem);
+  letter-spacing: 0;
+}
+
+.role-copy p {
+  color: rgba(11, 11, 15, 0.62);
+}
+
+@media (max-width: 760px) {
+  .hero-panel {
+    padding: 8px;
+    border-radius: 20px;
+  }
+
+  .portrait-frame {
+    border-radius: 14px 14px 0 0;
+  }
+
+  .role-copy {
+    padding: 22px 22px 26px;
+    border-radius: 0 0 14px 14px;
+  }
+}

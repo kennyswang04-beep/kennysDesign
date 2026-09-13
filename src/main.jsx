@@ -306,8 +306,14 @@ function App() {
             <p className="eyebrow">E-COMMERCE DESIGNER / PORTFOLIO 2026</p>
             <h1>KENNYS's space</h1>
             <p className="hero-text">
-              以克制的视觉秩序、梦幻的科技氛围和清晰的商品叙事，构建能被面试官快速理解的电商设计作品现场。
+              电商视觉设计师｜主图 / 详情页 / Amazon A+ 页面 / 活动视觉 / AI 辅助设计流程。
             </p>
+            <div className="hero-badges">
+              <span>主图视觉</span>
+              <span>详情页信息层级</span>
+              <span>C4D 产品渲染</span>
+              <span>AI 辅助提效</span>
+            </div>
             <div className="hero-actions">
               <a className="primary-link" href="#works">
                 查看作品
@@ -376,6 +382,31 @@ function App() {
         </div>
       </section>
 
+      <section className="strengths section-pad" id="strengths">
+        <div className="shell strengths-grid">
+          <div>
+            <p className="section-kicker">CAPABILITY</p>
+            <h2>把视觉表现、商品逻辑和效率工具放在同一套工作流里。</h2>
+          </div>
+          <div className="strengths-panel">
+            <article>
+              <span>01</span>
+              <strong>核心能力</strong>
+              <p>电商详情页信息层级 / C4D 产品渲染 / 活动 KV / AI 辅助提效 / 店铺视觉统一</p>
+            </article>
+            <article>
+              <span>02</span>
+              <strong>软件技能</strong>
+              <p>Photoshop / Illustrator / C4D / Octane Render / After Effects / ChatGPT / Codex</p>
+            </article>
+            <article>
+              <span>03</span>
+              <strong>求职意向</strong>
+              <p>电商设计师 / 视觉设计师 / 产品视觉设计方向</p>
+            </article>
+          </div>
+        </div>
+      </section>
       <section className="works section-pad" id="works">
         <div className="shell">
           <div className="section-heading">
@@ -401,6 +432,11 @@ function App() {
               ) : (
                 <img src={activeWork.image} alt={activeWork.title} />
               )}
+              <div className="work-tags" aria-label="项目说明">
+                {activeWork.tags.map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
               <div className="preview-overlay">
                 <span>{activeWork.accent}</span>
                 <p>{activeWork.meta}</p>
@@ -457,7 +493,7 @@ function App() {
                 <span>Amazon A+ Practice Case</span>
                 <strong>iPad 配件 A+ 页面练习</strong>
               </div>
-              <p>12 个模块按页面浏览顺序排列，模拟亚马逊 A+ 页面从首屏卖点到场景、结构和细节说明的阅读节奏。</p>
+              <p>按亚马逊 A+ 页面阅读顺序整理，展示从首屏卖点、场景使用、结构细节到功能说明的完整页面逻辑。</p>
             </div>
             <div className="aplus-layout">
               <aside className="aplus-index" aria-label="A+ 页面模块目录">
@@ -523,6 +559,8 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+
+
 
 
 

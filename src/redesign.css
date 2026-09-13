@@ -1690,3 +1690,10 @@ h2 {
     font-size: 0.76rem;
   }
 }
+
+/* Keep portfolio images unobstructed */
+.gallery-item figcaption,
+.aplus-module figcaption,
+.practice-frame figcaption {
+  display: none;
+}

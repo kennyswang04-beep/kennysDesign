@@ -12,13 +12,13 @@ import {
   Play,
   X
 } from "lucide-react";
-import GlowCursor from "./GlowCursor";
 import "./styles.css";
 import "./practice.css";
 import "./redesign.css";
 
 const navItems = [
   { label: "角色介绍", href: "#profile" },
+  { label: "核心能力", href: "#strengths" },
   { label: "作品案例", href: "#works" },
   { label: "互动体验", href: "#experience" },
   { label: "联系方式", href: "#contact" }
@@ -247,7 +247,6 @@ function PracticeCarousel({ group }) {
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeCase, setActiveCase] = useState(0);
-  const [motionOn, setMotionOn] = useState(true);
 
   const activeWork = cases[activeCase];
   const gridCells = useMemo(() => Array.from({ length: 42 }), []);
@@ -289,7 +288,7 @@ function App() {
       </header>
 
       <section className="hero" id="hero">
-        <div className={`video-stage ${motionOn ? "is-playing" : "is-paused"}`} aria-hidden="true">
+        <div className="video-stage" aria-hidden="true">
           <div className="grain" />
           <div className="scan-grid">
             {gridCells.map((_, index) => (
@@ -302,25 +301,6 @@ function App() {
           <div className="signal-line line-two" />
           <div className="signal-line line-three" />
         </div>
-        <GlowCursor
-          color="#67E8F9"
-          secondaryColor="#A78BFA"
-          trailLength={54}
-          trailWidth={10}
-          trailTaper={0.9}
-          followSpeed={0.22}
-          glowIntensity={2.2}
-          glowSpread={1.35}
-          hotspot={0.65}
-          brightness={1.25}
-          opacity={1}
-          pulseSpeed={1.1}
-          noiseStrength={0}
-          idleFade
-          idleTimeout={700}
-          fadeDuration={900}
-          blendMode="screen"
-        />
 
         <div className="hero-content shell">
           <div className="hero-copy">
@@ -340,10 +320,10 @@ function App() {
                 查看作品
                 <ArrowUpRight size={18} />
               </a>
-              <button className="ghost-link" type="button" onClick={() => setMotionOn((value) => !value)}>
-                {motionOn ? <Pause size={16} /> : <Play size={16} />}
-                {motionOn ? "暂停动态" : "播放动态"}
-              </button>
+              <a className="ghost-link" href="#contact">
+                <MessageCircle size={16} />
+                联系方式
+              </a>
             </div>
           </div>
 
@@ -580,6 +560,8 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+
+
 
 
 

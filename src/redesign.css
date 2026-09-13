@@ -2102,3 +2102,25 @@ h2,
   background: #ffffff;
   box-shadow: none;
 }
+
+/* Minimal generated portrait asset */
+.portrait-frame {
+  aspect-ratio: 1 / 1.18;
+  background: #f4f4f1;
+}
+
+.portrait-frame::after {
+  background: linear-gradient(180deg, transparent 76%, rgba(255, 255, 255, 0.88) 100%);
+}
+
+.portrait-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 42%;
+  filter: none;
+}
+
+.role-copy {
+  margin-top: -1px;
+}

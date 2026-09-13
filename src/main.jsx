@@ -28,8 +28,8 @@ const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
 
 const cases = [
   {
-    title: "E13 系列主图视觉",
-    type: "电商主图 / 视觉策略",
+    title: "平板键盘设计",
+    type: "产品主图 / 详情页",
     image: asset("/portfolio/optimized/e13/main/01.jpg"),
     meta: "6 张主图 + 11 张详情页",
     accent: "01",
@@ -64,8 +64,8 @@ const cases = [
     ]
   },
   {
-    title: "K1 亚马逊 A+ 练习",
-    type: "Amazon A+ / 主图与详情页",
+    title: "蓝牙键盘设计",
+    type: "产品主图 / 详情页",
     image: asset("/portfolio/optimized/k1/main/01.jpg"),
     meta: "5 张主图 + 9 张详情页",
     accent: "03",
@@ -580,6 +580,7 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+
 
 
 

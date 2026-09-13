@@ -118,56 +118,63 @@ const practiceGroups = [
   }))
 }));
 
-function LazyMotionVideo() {
-  const containerRef = useRef(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
+function ClickToPlayMotionVideo() {
+  const videoRef = useRef(null);
+  const [hasStarted, setHasStarted] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  useEffect(() => {
-    const fallbackTimer = window.setTimeout(() => setShouldLoad(true), 800);
-    const element = containerRef.current;
-    if (!element) {
-      window.clearTimeout(fallbackTimer);
-      return undefined;
+  const togglePlayback = async () => {
+    const video = videoRef.current;
+
+    if (!hasStarted) {
+      setHasStarted(true);
+      window.setTimeout(() => {
+        const mountedVideo = videoRef.current;
+        if (!mountedVideo) return;
+        mountedVideo.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
+      }, 0);
+      return;
     }
 
-    if (!("IntersectionObserver" in window)) {
-      setShouldLoad(true);
-      window.clearTimeout(fallbackTimer);
-      return undefined;
+    if (!video) return;
+
+    if (video.paused) {
+      try {
+        await video.play();
+        setIsPlaying(true);
+      } catch {
+        setIsPlaying(false);
+      }
+    } else {
+      video.pause();
+      setIsPlaying(false);
     }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldLoad(true);
-          window.clearTimeout(fallbackTimer);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "420px 0px" }
-    );
-
-    observer.observe(element);
-    return () => {
-      window.clearTimeout(fallbackTimer);
-      observer.disconnect();
-    };
-  }, []);
+  };
 
   return (
-    <div ref={containerRef} className="motion-video-shell" aria-hidden="true">
-      {shouldLoad && (
+    <div className={hasStarted ? "motion-video-shell is-started" : "motion-video-shell"}>
+      {hasStarted && (
         <video
+          ref={videoRef}
           className="motion-video"
           src={asset("/portfolio/product-motion.mp4")}
-          autoPlay
           muted
           loop
           playsInline
           preload="metadata"
-          poster={asset("/portfolio/optimized/t83-hero.jpg")}
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
         />
       )}
+      <button
+        className={isPlaying ? "motion-play-toggle is-playing" : "motion-play-toggle"}
+        type="button"
+        onClick={togglePlayback}
+        aria-label={isPlaying ? "暂停产品动态视频" : "播放产品动态视频"}
+      >
+        {isPlaying ? <Pause size={20} /> : <Play size={20} />}
+        <span>{isPlaying ? "暂停视频" : "播放视频"}</span>
+      </button>
     </div>
   );
 }
@@ -420,7 +427,7 @@ function App() {
       </section>
 
       <section className="experience motion-section" id="experience">
-        <LazyMotionVideo />
+        <ClickToPlayMotionVideo />
         <div className="motion-shade" aria-hidden="true" />
         <div className="shell interaction-wrap">
           <div className="motion-copy">
@@ -482,6 +489,7 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+
 
 
 

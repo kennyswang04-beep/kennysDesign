@@ -329,7 +329,7 @@ function App() {
 
           <aside className="hero-panel">
             <div className="portrait-frame">
-              <img src={asset("/portfolio/optimized/kenny-portrait-apple.jpg")} alt="Kenny 个人肖像" loading="eager" fetchPriority="high" decoding="async" />
+              <img src={asset("/portfolio/optimized/kenny-portrait.jpg")} alt="Kenny 个人肖像" loading="eager" fetchPriority="high" decoding="async" />
             </div>
             <div className="role-copy">
               <span>ROLE</span>
@@ -560,6 +560,7 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+
 
 
 

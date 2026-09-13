@@ -64,11 +64,29 @@ const cases = [
     ]
   },
   {
+    title: "K1 亚马逊 A+ 练习",
+    type: "Amazon A+ / 主图与详情页",
+    image: asset("/portfolio/optimized/k1/main/01.jpg"),
+    meta: "5 张主图 + 9 张详情页",
+    accent: "03",
+    tags: ["我的职责：A+ 页面模块与主图视觉整理", "设计目标：按浏览顺序呈现卖点与场景", "解决问题：让配件功能和使用价值更直观"],
+    gallery: [
+      ...Array.from({ length: 5 }, (_, index) => ({
+        label: `主图 ${String(index + 1).padStart(2, "0")}`,
+        src: asset(`/portfolio/optimized/k1/main/${String(index + 1).padStart(2, "0")}.jpg`)
+      })),
+      ...Array.from({ length: 9 }, (_, index) => ({
+        label: `详情页 ${String(index + 1).padStart(2, "0")}`,
+        src: asset(`/portfolio/optimized/k1/detail/${String(index + 1).padStart(2, "0")}.jpg`)
+      }))
+    ]
+  },
+  {
     title: "2025过往总结",
     type: "产品目录 / 年度视觉归档",
     image: asset("/portfolio/optimized/catalog/01.jpg"),
     meta: "6 张产品目录视觉",
-    accent: "03",
+    accent: "04",
     tags: ["我的职责：年度产品目录视觉归档", "设计目标：统一多产品版式系统", "解决问题：让产品集合更易浏览和比较"],
     gallery: Array.from({ length: 6 }, (_, index) => ({
       label: `产品目录 ${String(index + 1).padStart(2, "0")}`,
@@ -80,7 +98,7 @@ const cases = [
     type: "版式系统 / 产品集合",
     image: asset("/portfolio/optimized/a1/01.jpg"),
     meta: "9 张产品目录设计",
-    accent: "04",
+    accent: "05",
     tags: ["我的职责：产品集合页版式设计", "设计目标：建立清晰目录与视觉秩序", "解决问题：提升系列产品的整体呈现效率"],
     gallery: Array.from({ length: 9 }, (_, index) => ({
       label: `目录设计 ${String(index + 1).padStart(2, "0")}`,
@@ -562,6 +580,7 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+
 
 
 

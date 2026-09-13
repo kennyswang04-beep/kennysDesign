@@ -554,7 +554,7 @@ function App() {
         <div className="shell contact-grid">
           <div>
             <p className="section-kicker">CONTACT</p>
-            <h2>期待把下一组商品，做成更被看见的视觉资产。</h2>
+            <h2>期待您的邀约。</h2>
           </div>
           <div className="contact-cards">
             <a href="tel:18002828034">
@@ -580,6 +580,7 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+
 
 
 
